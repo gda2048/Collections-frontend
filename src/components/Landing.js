@@ -1,7 +1,13 @@
 import React from "react";
+import UserProfile from "./auth/UserProfile";
+
+
 
 const Landing = () => (
-    <h1>Welcome to this wonderful site.</h1>
+    <div>
+        <h1>Welcome to this wonderful site.</h1>
+        
+    </div>
 );
 
 export default Landing;

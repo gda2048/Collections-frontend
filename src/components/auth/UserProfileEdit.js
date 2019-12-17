@@ -44,12 +44,6 @@ class Login extends Component {
                     </fieldset>
 
                     <fieldset className="form-group">
-                        <Field name="website" label="Website" component={renderField}
-                               type="text"
-                        />
-                    </fieldset>
-
-                    <fieldset className="form-group">
                         <Field name="about" label="About Yourself" component={renderTextAreaField}
                                type="text"
                         />

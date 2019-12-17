@@ -17,18 +17,17 @@ class UserProfile extends Component {
 
     renderUser() {
         const user = this.props.user;
-        console.log(user);
         if (user) {
+            let date = new Date(user.date_joined)
             return (
                 <div className="mx-2">
-                    <h4>username: {user.username}</h4>
+                    <h4>Username: {user.username}</h4>
+                    <h4>Email: {user.email}</h4>
                     <h4>First Name: {user.first_name}</h4>
                     <h4>Last Name: {user.last_name}</h4>
-                    <h4>email: {user.email}</h4>
-                    <h4>Website: {user.website}</h4>
                     <hr />
-                    <h4>About Myself:</h4>
-                    <p>{user.about}</p>
+                    <h4>Date joined: {date.toDateString()}</h4>
+                    <h4>About: {user.about}</h4>
 
                 </div>
             );

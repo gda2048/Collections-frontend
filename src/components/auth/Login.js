@@ -27,7 +27,7 @@ class Login extends Component {
                     <hr/>
 
                     <fieldset className="form-group">
-                        <Field name="email" label="Email" component={renderField}
+                        <Field name="username" label="Username" component={renderField}
                                type="text" validate={[required({message: "This field is required."})]}
                         />
                     </fieldset>
@@ -35,7 +35,7 @@ class Login extends Component {
 
                     <fieldset className="form-group">
                         <Field name="password" label="Password" component={renderField}
-                               type="password"  validate={[required({message: "This field is required."})]}
+                               type="password" validate={[required({message: "This field is required."})]}
                         />
                     </fieldset>
 
@@ -45,7 +45,7 @@ class Login extends Component {
                     </fieldset>
 
                     <p>Not registered? <Link to="/signup">Signup Here!</Link></p>
-                    <Link to="/reset_password">forgot password?</Link>
+                    <Link to="/reset_password">Forgot password?</Link>
                 </form>
             </div>
         )

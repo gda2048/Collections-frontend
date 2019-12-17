@@ -1,6 +1,6 @@
 import React from "react";
 
-export const renderField = ({ input, label, type, meta: { touched, error } }) => (
+export const renderField = ({input, label, type, meta: {touched, error}}) => (
     <div>
         <label>{label}</label>
         <div>
@@ -10,7 +10,7 @@ export const renderField = ({ input, label, type, meta: { touched, error } }) =>
     </div>
 );
 
-export const renderTextAreaField = ({ input, label, type, meta: { touched, error } }) => (
+export const renderTextAreaField = ({input, label, type, meta: {touched, error}}) => (
     <div>
         <label>{label}</label>
         <div>
@@ -21,7 +21,7 @@ export const renderTextAreaField = ({ input, label, type, meta: { touched, error
 );
 
 export const renderError = (errorMessages) => {
-    if ( errorMessages) {
+    if (errorMessages) {
         return (
             <div className="alert alert-danger">
                 {errorMessages}

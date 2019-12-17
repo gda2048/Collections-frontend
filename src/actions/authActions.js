@@ -1,13 +1,14 @@
 import axios from "axios";
-import { SubmissionError } from 'redux-form';
+import {SubmissionError} from 'redux-form';
 import history from "../utils/historyUtils";
-import { actions as notifActions } from 'redux-notifications';
-const { notifSend } = notifActions;
+import {actions as notifActions} from 'redux-notifications';
 
-import { AuthTypes } from "../constants/actionTypes";
-import { AuthUrls } from "../constants/urls";
+const {notifSend} = notifActions;
+
+import {AuthTypes} from "../constants/actionTypes";
+import {AuthUrls} from "../constants/urls";
 import store from "../store";
-import { getUserToken } from "../utils/authUtils";
+import {getUserToken} from "../utils/authUtils";
 
 export function authLogin(token) {
     return {
@@ -17,22 +18,22 @@ export function authLogin(token) {
 }
 
 export function loginUser(formValues, dispatch, props) {
-        const loginUrl = AuthUrls.LOGIN;
+    const loginUrl = AuthUrls.LOGIN;
 
-        return axios.post(loginUrl, formValues).then((response) => {
-            // If request is good...
-            // Update state to indicate user is authenticated
-            const token = response.data.key;
-            dispatch(authLogin(token));
+    return axios.post(loginUrl, formValues).then((response) => {
+        // If request is good...
+        // Update state to indicate user is authenticated
+        const token = response.data.key;
+        dispatch(authLogin(token));
 
-            localStorage.setItem("token", token);
+        localStorage.setItem("token", token);
 
-            // redirect to the route '/'
-            history.push("/");
-        }).catch(error => {
-            const processedError = processServerError(error.response.data);
-            throw new SubmissionError(processedError);
-        });
+        // redirect to the route '/'
+        history.push("/");
+    }).catch(error => {
+        const processedError = processServerError(error.response.data);
+        throw new SubmissionError(processedError);
+    });
 }
 
 export function logoutUser() {
@@ -73,7 +74,7 @@ function setUserProfile(payload) {
 }
 
 export function getUserProfile() {
-    return function(dispatch) {
+    return function (dispatch) {
         const token = getUserToken(store.getState());
         if (token) {
             axios.get(AuthUrls.USER_PROFILE, {
@@ -136,9 +137,9 @@ export function resetPassword(formValues, dispatch, props) {
 }
 
 export function confirmPasswordChange(formValues, dispatch, props) {
-    const { uid, token } = props.match.params;
+    const {uid, token} = props.match.params;
     const resetPasswordConfirmUrl = AuthUrls.RESET_PASSWORD_CONFIRM;
-    const data = Object.assign(formValues, { uid, token });
+    const data = Object.assign(formValues, {uid, token});
 
     return axios.post(resetPasswordConfirmUrl, data)
         .then(response => {
@@ -158,9 +159,9 @@ export function confirmPasswordChange(formValues, dispatch, props) {
 }
 
 export function activateUserAccount(formValues, dispatch, props) {
-    const { key } = props.match.params;
+    const {key} = props.match.params;
     const activateUserUrl = AuthUrls.USER_ACTIVATION;
-    const data = Object.assign(formValues, { key });
+    const data = Object.assign(formValues, {key});
 
     return axios.post(activateUserUrl, data)
         .then(response => {
@@ -202,9 +203,10 @@ export function updateUserProfile(formValues, dispatch, props) {
             throw new SubmissionError(processedError);
         });
 }
+
 // util functions
 function processServerError(error) {
-    return  Object.keys(error).reduce(function(newDict, key) {
+    return Object.keys(error).reduce(function (newDict, key) {
         if (key === "non_field_errors") {
             newDict["_error"].push(error[key]);
         } else if (key === "token") {
