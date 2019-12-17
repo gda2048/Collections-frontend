@@ -8,7 +8,7 @@
     "clean": "rimraf ./dist",
     "lint": "eslint ./src ./tests",
     "build": "npm run clean && webpack --progress --profile --colors",
-    "start": "webpack-dev-server --port 8083",
+    "start": "webpack-dev-server",
     "test": "npm run lint && mocha --require babel-register ./tests/setup.js --recursive ./tests/**/*.spec.js",
     "test:watch": "npm run test -- --watch"
   },
